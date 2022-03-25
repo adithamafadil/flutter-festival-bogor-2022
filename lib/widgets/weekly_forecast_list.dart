@@ -9,11 +9,10 @@ class WeeklyForecastList extends StatelessWidget {
     final DateTime currentDate = DateTime.now();
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return ListView.builder(
-        shrinkWrap: true,
-        itemCount: dummyData.length,
-        itemBuilder: (context, index) {
-          final dailyForecast = dummyData[index];
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          final DailyForecast dailyForecast = dummyData[index];
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Card(
@@ -83,6 +82,9 @@ class WeeklyForecastList extends StatelessWidget {
               ),
             ),
           );
-        });
+        },
+        childCount: 7,
+      ),
+    );
   }
 }
